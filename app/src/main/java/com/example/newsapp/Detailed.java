@@ -63,4 +63,6 @@ public class Detailed extends AppCompatActivity {
             loader.setVisibility(View.INVISIBLE);
         }
     }
+
+
 }

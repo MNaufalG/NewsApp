@@ -6,10 +6,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.newsapp.Model.Articles;
@@ -17,7 +19,6 @@ import com.example.newsapp.Model.Headlines;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,12 +28,15 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     SwipeRefreshLayout swipeRefreshLayout;
+    TextView textView;
     EditText etQuery;
     Button btnSearch,btnAboutUs;
     Dialog dialog;
-    final String API_KEY = "03cc77c9a5ce45b6bcca0ca84dcfe2a5";
+    final String API_KEY = "a85f610b52eb41bcaa0331c0964be615";
+    String country = "id";
     Adapter adapter;
     List<Articles>  articles = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
         dialog = new Dialog(MainActivity.this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        final String country = getCountry();
-
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -88,16 +90,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
     }
 
     public void retrieveJson(String query ,String country, String apiKey){
-
-
         swipeRefreshLayout.setRefreshing(true);
         Call<Headlines> call;
         if (!etQuery.getText().toString().equals("")){
@@ -126,12 +121,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public String getCountry(){
-        Locale locale = Locale.getDefault();
-        String country = locale.getCountry();
-        return country.toLowerCase();
-    }
-
     public void showDialog(){
         Button btnClose;
         dialog.setContentView(R.layout.about_us_pop_up);
@@ -142,6 +131,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+            }
+        });
+    }
+
+    public void onClick(View view) {
+        textView = findViewById(R.id.tvNewsApp);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,MainActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -14,16 +14,18 @@
         android:orientation="horizontal">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tvNewsApp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="NEWS"
+        android:text="NEWS APP"
         android:layout_weight="10"
         android:fontFamily="@font/g_bold"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:layout_marginLeft="10dp"
         android:background="@color/white"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:onClick="onClick"/>
      <Button
          android:layout_width="16dp"
          android:layout_height="16dp"
@@ -32,7 +34,6 @@
          android:padding="10dp"
          android:background="@drawable/ic_dot_24dp"
          android:id="@+id/aboutUs"/>
-
 
     </LinearLayout>
 
