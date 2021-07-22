@@ -9,7 +9,10 @@ public class ApiClient {
     private static Retrofit retrofit;
 
     private ApiClient(){
-        retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+        retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
     public static synchronized ApiClient getInstance(){
@@ -23,3 +26,4 @@ public class ApiClient {
         return retrofit.create(ApiInterface.class);
     }
 }
+
